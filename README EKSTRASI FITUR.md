@@ -16,6 +16,7 @@ from skimage.feature import graycomatrix, graycoprops
 - from skimage.feature import graycomatrix, - graycoprops: Mengimpor fungsi graycomatrix dan graycoprops dari scikit-image. Ini digunakan untuk menghitung matriks ko-occurance abu-abu dan propertinya, yang sering digunakan dalam ekstraksi fitur gambar untuk pengenalan pola dan analisis tekstur.
 
 ``` bash
+img = skimage.data.chelsea()
 img_hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
 
 fig, axs = plt.subplots(1, 2, figsize=(10, 10))
@@ -30,12 +31,18 @@ ax[1].set_title("HSV")
 
 plt.show()
 ```
+- Gambar chelsea (gambar sampel kucing) dimuat dari skimage.data.
 - Fungsi cv2.cvtColor() digunakan untuk mengubah citra img dari format warna RGB menjadi format warna HSV. Hasil konversi disimpan dalam variabel img_hsv.
 - plt.subplots(1, 2, figsize=(10, 10)): Membuat figur (fig) dengan satu baris (1) dan dua subplot sejajar (2). Ukuran figur ditentukan sebagai 10x10 inch.
 - axs.ravel(): Mengubah array dari subplot menjadi satu dimensi agar lebih mudah diakses.
 - ax[0].imshow(img): Menampilkan citra asli (RGB) pada subplot pertama (ax[0]) dengan judul "RGB".
 - ax[1].imshow(img_hsv): Menampilkan citra yang sudah dikonversi ke HSV pada subplot kedua (ax[1]) dengan judul "HSV".
 - plt.show(): Menggambar dan menampilkan seluruh figur dan subplot yang telah disiapkan menggunakan Matplotlib
+
+```bash
+hue = img_hsv[:, :, 0]
+```
+Perintah ini mengekstrak channel pertama (index 0) dari gambar HSV, yaitu channel Hue. img_hsv[:, :, 0] artinya kita mengambil semua baris (:), semua kolom (:), tetapi hanya channel pertama (0).
 
 ```bash
 mean = np.mean(img_hsv.ravel())  
@@ -82,3 +89,5 @@ print (f'correlation : {correlation}')
 5. Correlation (Korelasi): Mengukur hubungan linier antara intensitas piksel dalam pasangan.
 
     Kemudian mencetak nilai dari setiap fitur tekstur untuk memberikan wawasan tentang karakteristik tekstur dari citra yang dianalisis.
+
+## EKSTRASI FITUR
